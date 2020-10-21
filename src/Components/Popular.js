@@ -74,7 +74,7 @@ class Popular extends React.Component {
                                 <h1 key={item.id}>
                                     <Link to={`/movie/${item.id}`}>
                                         <div className="container-card">
-                                            <div className="card" style={{ width: "15rem" }}>
+                                            <div className="card" style={{ width: "13rem" }}>
                                                 <img src={base_url + item.poster_path} className="image" alt="" />
                                                 <div className="overlay">{item.title}</div>
                                             </div>

@@ -1,11 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import '../Card.css'
+import Lottie from 'react-lottie';
+import animationData from '../Lottie/not-found-anim.json';
 
 class Popular extends React.Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             error: false,
             isLoading: true,
@@ -25,28 +28,66 @@ class Popular extends React.Component {
                 })
             })
             .catch(error => {
+                this.setState({
+                    isLoading: false,
+                    error: true
+                })
                 console.log(error)
             })
 
     }
-    render(props) {
-        const items = this.state.popularmovies
-        return (
-            this.state.isLoading ? "Loading..." : <div>
+    render() {
+        if (this.state.error) {
+            const lottieanim = {
+                loop: true,
+                autoplay: true,
+                animationData: animationData,
 
-                {items.map(item => (
-                    // <ul key={item.id}>
-                    //     <li>{item.title}</li>
-                    // </ul>
-                    <h1 key={item.id}>
-                        <Link to={`/movie/${item.id}`}>
-                            {item.title}
-                        </Link>
+            }
 
-                    </h1>
-                ))}
-            </div>
-        )
+            return (
+                <div>
+                    {/* error animation */}
+                    <Lottie
+                        options={lottieanim}
+                        height={300}
+                        width={300}
+                    />
+                </div>
+            )
+        } else {
+            const items = this.state.popularmovies
+            const myStyle = {
+                margin: "20%"
+            }
+
+            const base_url = "https://image.tmdb.org/t/p/w500"
+            return (
+
+                this.state.isLoading ? <div style={myStyle} className="d-flex justify-content-center">
+                    <div className="spinner-grow text-dark" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div> : <div>
+                        <div className="row justify-content-center">
+                            {items.map(item => (
+                                <h1 key={item.id}>
+                                    <Link to={`/movie/${item.id}`}>
+                                        <div className="container-card">
+                                            <div className="card" style={{ width: "15rem" }}>
+                                                <img src={base_url + item.poster_path} className="image" alt="" />
+                                                <div className="overlay">{item.title}</div>
+                                            </div>
+                                        </div>
+
+                                    </Link>
+
+                                </h1>
+                            ))}
+                        </div>
+                    </div>
+            )
+        }
     }
 }
 

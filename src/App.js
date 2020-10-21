@@ -10,7 +10,7 @@ import MovieDetail from './Components/MovieDetail'
 
 function App() {
   return (
-    <div className="container-fluid">
+    <div>
       <Router>
         <div>
           <NavBar />

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a className="navbar-brand" href="/">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/3039/3039386.svg" width="30" height="30" className="d-inline-block align-top" alt="" loading="lazy" />
             </a>
@@ -16,10 +16,10 @@ function NavBar() {
                         <Link className="nav-link" to="/" >Popular</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/upcoming" >Upcoming</Link>
+                        <Link className="nav-link" to="/nowplaying" >Now Playing</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/nowplaying" >Now Playing</Link>
+                        <Link className="nav-link" to="/upcoming" >Upcoming</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/toprated" >Top Rated</Link>

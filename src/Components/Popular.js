@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import '../Card.css'
 import Lottie from 'react-lottie';
 import animationData from '../Lottie/not-found-anim.json';
+import Card from '../Components/Card'
 
 class Popular extends React.Component {
 
@@ -60,8 +61,7 @@ class Popular extends React.Component {
             const myStyle = {
                 margin: "20%"
             }
-
-            const base_url = "https://image.tmdb.org/t/p/w500"
+            
             return (
 
                 this.state.isLoading ? <div style={myStyle} className="d-flex justify-content-center">
@@ -73,13 +73,7 @@ class Popular extends React.Component {
                             {items.map(item => (
                                 <h1 key={item.id}>
                                     <Link to={`/movie/${item.id}`}>
-                                        <div className="container-card">
-                                            <div className="card" style={{ width: "13rem" }}>
-                                                <img src={base_url + item.poster_path} className="image" alt="" />
-                                                <div className="overlay">{item.title}</div>
-                                            </div>
-                                        </div>
-
+                                        <Card item={item} />
                                     </Link>
 
                                 </h1>

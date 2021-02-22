@@ -14,7 +14,7 @@ class MovieDetail extends React.Component {
 
     // 337401
     componentDidMount() {
-        axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=7ffd3ea64bd92d5a39124a5b208cdaac&language=en-US`, {})
+        axios.get(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US`, {})
             .then(response => {
                 const fetched = response.data
                 console.log(fetched)

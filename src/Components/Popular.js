@@ -1,10 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import '../Card.css'
 import Lottie from 'react-lottie';
 import animationData from '../Lottie/not-found-anim.json';
 import Card from '../Components/Card'
+import axios from '../services/axios'
+import requests from '../services/requests'
 
 class Popular extends React.Component {
 
@@ -19,7 +20,7 @@ class Popular extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true })
-        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US&page=1`, {})
+        axios.get(requests.getPopular)
             .then(response => {
                 const fetched = response.data
                 console.log(fetched)
@@ -61,7 +62,7 @@ class Popular extends React.Component {
             const myStyle = {
                 margin: "20%"
             }
-            
+
             return (
 
                 this.state.isLoading ? <div style={myStyle} className="d-flex justify-content-center">
@@ -69,17 +70,17 @@ class Popular extends React.Component {
                         <span className="sr-only">Loading...</span>
                     </div>
                 </div> : <div>
-                        <div className="row justify-content-center">
-                            {items.map(item => (
-                                <h1 key={item.id}>
-                                    <Link to={`/movie/${item.id}`}>
-                                        <Card item={item} />
-                                    </Link>
+                    <div className="row justify-content-center">
+                        {items.map(item => (
+                            <h1 key={item.id}>
+                                <Link to={`/movie/${item.id}`}>
+                                    <Card item={item} />
+                                </Link>
 
-                                </h1>
-                            ))}
-                        </div>
+                            </h1>
+                        ))}
                     </div>
+                </div>
             )
         }
     }

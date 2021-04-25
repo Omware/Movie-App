@@ -1,10 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import '../Card.css'
 import Lottie from 'react-lottie';
 import animationData from '../Lottie/not-found-anim.json';
 import Card from '../Components/Card'
+import axios from '../services/axios'
+import requests from '../services/requests'
 
 
 class TopRated extends React.Component {
@@ -20,7 +21,7 @@ class TopRated extends React.Component {
 
     componentDidMount() {
         this.setState({ isLoading: true })
-        axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US&page=1`, {})
+        axios.get(requests.getTopRated, {})
             .then(response => {
                 const fetched = response.data
                 console.log(fetched)
@@ -70,17 +71,17 @@ class TopRated extends React.Component {
                         <span className="sr-only">Loading...</span>
                     </div>
                 </div> : <div>
-                        <div className="row justify-content-center">
-                            {items.map(item => (
-                                <h1 key={item.id}>
-                                    <Link to={`/movie/${item.id}`}>
-                                        <Card item={item} />
-                                    </Link>
+                    <div className="row justify-content-center">
+                        {items.map(item => (
+                            <h1 key={item.id}>
+                                <Link to={`/movie/${item.id}`}>
+                                    <Card item={item} />
+                                </Link>
 
-                                </h1>
-                            ))}
-                        </div>
+                            </h1>
+                        ))}
                     </div>
+                </div>
             )
         }
     }

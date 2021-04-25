@@ -19,7 +19,7 @@ class NowPlaying extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ isLoading: false })
+        this.setState({ isLoading: true })
         axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_IMDB_API_KEY}&language=en-US&page=1`, {})
             .then(response => {
                 const fetched = response.data

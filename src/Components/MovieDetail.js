@@ -39,7 +39,7 @@ class MovieDetail extends React.Component {
   }
 
   render () {
-    const base_url = 'https://image.t{' '}mdb.org/t/p/w500';
+    const base_url = 'https://image.tmdb.org/t/p/w500';
     const mycolors = ['#310042', '#ff6047', '#036900', '#fff700', '#4287f5'];
     const getRandom =
       mycolors[Math.floor (Math.random () * mycolors.length - 1)];

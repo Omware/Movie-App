@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../Images/camera.png'
 
-function NavBar() {
+const NavBar = () => {
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/">
         <img
-          src="https://www.flaticon.com/svg/static/icons/svg/3039/3039386.svg"
+          src={logo}
           width="30"
           height="30"
           className="d-inline-block align-top"
